@@ -10,11 +10,10 @@ class BowlingGame:
         i = 0
         f = 0
         while f < 10:
-            if self.is_spare(i) and not self.is_strike(i):
+            if self.is_spare(i):
                 final_score += self.scores[i] + self.scores[i + 1] + self.scores[i + 2]
             elif self.is_strike(i):
-                s = self.get_strike_index(i)
-                final_score += self.scores[s] + self.scores[s + 1] + self.scores[s + 2]
+                final_score += self.scores[i] + self.scores[i + 1] + self.scores[i + 2]
                 i -= 1
             else:
                 final_score += self.scores[i] + self.scores[i + 1]
@@ -26,14 +25,13 @@ class BowlingGame:
         return s % 2 == 0
 
     def is_spare(self, i):
-        return self.scores[i] + self.scores[i + 1] == 1
+        return self.scores[i] + self.scores[i + 1] == 10
 
     def is_strike(self, i):
-        b = self.scores[i] == 10 or self.scores[i + 1] == 10
+        b = self.scores[i] == 10
         return b
 
     def get_strike_index(self, i):
         if self.scores[i] == 10:
             return i
         return i + 1
-

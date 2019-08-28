@@ -42,16 +42,6 @@ class TestBowlingGame(unittest.TestCase):
         # Assert
         self.assertEqual(self.g.score(), 22)
 
-    def test_strike_after_gutter_ball(self):
-        # Act
-        self.g.roll(0)
-        self.g.roll(10)
-        self.g.roll(3)
-        self.g.roll(3)
-        self.roll_ntimes_mpins(16, 0)
-        # Assert
-        self.assertEqual(self.g.score(), 22)
-
     def test_all_strikes(self):
         # Act
         self.roll_ntimes_mpins(12, 10)
@@ -59,6 +49,5 @@ class TestBowlingGame(unittest.TestCase):
         self.assertEqual(self.g.score(), 300)
 
     def roll_ntimes_mpins(self, rolls, pins):
-        for i in range(rolls):
+        for _ in range(rolls):
             self.g.roll(pins)
-
